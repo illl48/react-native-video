@@ -7,13 +7,22 @@ import FilterType from './FilterType';
 import DRMType from './DRMType';
 import VideoResizeMode from './VideoResizeMode.js';
 
+async function isPictureInPictureSupported() {
+  if (Platform.OS === 'ios') {
+    if (NativeModules.VideoManager.isPictureInPictureSupported) {
+      return await NativeModules.VideoManager.isPictureInPictureSupported();
+    }
+  }
+  return false;
+}
+
 const styles = StyleSheet.create({
   base: {
     overflow: 'hidden',
   },
 });
 
-export { TextTrackType, FilterType, DRMType };
+export { TextTrackType, FilterType, DRMType, isPictureInPictureSupported };
 
 export default class Video extends Component {
 

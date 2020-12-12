@@ -8,6 +8,18 @@
 
 RCT_EXPORT_MODULE();
 
+- (BOOL) isPictureInPictureSupported {
+    if ([AVPictureInPictureController isPictureInPictureSupported]) {
+        return YES;
+    }
+    return NO;
+}
+
+RCT_EXPORT_METHOD(isPictureInPictureSupported:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+    resolve(@(self.isPictureInPictureSupported));
+};
+
 - (UIView *)view
 {
   return [[RCTVideo alloc] initWithEventDispatcher:self.bridge.eventDispatcher];
